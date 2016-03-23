@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Route
+metadata:
+  annotations:
+    openshift.io/host.generated: "true"
+  creationTimestamp: 2016-03-23T17:04:46Z
+  labels:
+    component: simple-spring-amq
+    group: quickstarts
+    project: simple-spring-amq
+    provider: fabric8
+    version: 1.0-SNAPSHOT
+  name: simple-spring-amq
+  namespace: activemq-broker-ns
+  resourceVersion: "7962"
+  selfLink: /oapi/v1/namespaces/activemq-broker-ns/routes/simple-spring-amq
+  uid: 58500d8e-f119-11e5-a955-52540013d96e
+spec:
+  host: simple-spring-amq-activemq-broker-ns.ose.cdk.vm
+  port:
+    targetPort: "61616"
+  tls:
+      termination: passthrough
+  to:
+    kind: Service
+    name: simple-spring-amq
+status: {}

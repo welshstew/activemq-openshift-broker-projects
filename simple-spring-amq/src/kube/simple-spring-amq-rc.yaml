@@ -1,0 +1,61 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  creationTimestamp: 2016-03-23T15:53:11Z
+  generation: 1
+  labels:
+    component: simple-spring-amq
+    container: java
+    group: quickstarts
+    project: simple-spring-amq
+    provider: fabric8
+    version: 1.0-SNAPSHOT
+  name: simple-spring-amq
+  namespace: activemq-broker-ns
+  resourceVersion: "7239"
+  selfLink: /api/v1/namespaces/symphony-eu-amq/replicationcontrollers/simple-spring-amq
+  uid: 58b2b152-f10f-11e5-a955-52540013d96e
+spec:
+  replicas: 1
+  selector:
+    component: simple-spring-amq
+    container: java
+    group: quickstarts
+    project: simple-spring-amq
+    provider: fabric8
+    version: 1.0-SNAPSHOT
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        component: simple-spring-amq
+        container: java
+        group: quickstarts
+        project: simple-spring-amq
+        provider: fabric8
+        version: 1.0-SNAPSHOT
+    spec:
+      containers:
+      - env:
+        - name: KUBERNETES_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: fabric8/simple-spring-amq:1.0-SNAPSHOT
+        imagePullPolicy: IfNotPresent
+        name: simple-spring-amq
+        ports:
+        - containerPort: 8778
+          name: jolokia
+          protocol: TCP
+        resources: {}
+        securityContext: {}
+        terminationMessagePath: /dev/termination-log
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  observedGeneration: 1
+  replicas: 1

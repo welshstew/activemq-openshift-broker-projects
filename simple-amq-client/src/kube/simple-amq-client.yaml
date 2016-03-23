@@ -1,0 +1,79 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  creationTimestamp: 2016-03-23T14:23:20Z
+  generation: 1
+  labels:
+    component: simple-amq-client
+    container: java
+    group: quickstarts
+    project: simple-amq-client
+    provider: fabric8
+    version: 1.0-SNAPSHOT
+  name: simple-amq-client
+  namespace: activemq-broker-ns
+  resourceVersion: "6474"
+  selfLink: /api/v1/namespaces/symphony-eu-amq/replicationcontrollers/simple-amq-client
+  uid: cb45d999-f102-11e5-a955-52540013d96e
+spec:
+  replicas: 1
+  selector:
+    component: simple-amq-client
+    container: java
+    group: quickstarts
+    project: simple-amq-client
+    provider: fabric8
+    version: 1.0-SNAPSHOT
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        component: simple-amq-client
+        container: java
+        group: quickstarts
+        project: simple-amq-client
+        provider: fabric8
+        version: 1.0-SNAPSHOT
+    spec:
+      containers:
+      - env:
+        - name: BROKER_URL
+          value: ssl://simple-spring-amq:61616
+        - name: BROKER_USERNAME
+          value: admin
+        - name: BROKER_TRUSTSTORE_PASSWORD
+          value: password
+        - name: BROKER_TRUSTSTORE_FILE
+          value: /var/run/secrets/truststore/client.ts
+        - name: BROKER_PASSWORD
+          value: admin
+        - name: KUBERNETES_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        image: fabric8/simple-amq-client:1.0-SNAPSHOT
+        imagePullPolicy: IfNotPresent
+        name: simple-amq-client
+        ports:
+        - containerPort: 8778
+          name: jolokia
+          protocol: TCP
+        resources: {}
+        securityContext: {}
+        terminationMessagePath: /dev/termination-log
+        volumeMounts:
+        - mountPath: /var/run/secrets/truststore
+          name: truststore
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: truststore
+        secret:
+          secretName: client-truststore
+status:
+  observedGeneration: 1
+  replicas: 1
