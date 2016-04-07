@@ -42,7 +42,9 @@
     <fabric8.env.BROKER_PASSWORD>admin</fabric8.env.BROKER_PASSWORD>
     <fabric8.env.BROKER_TRUSTSTORE_FILE>/var/run/secrets/truststore/client.ts</fabric8.env.BROKER_TRUSTSTORE_FILE>
     <fabric8.env.BROKER_TRUSTSTORE_PASSWORD>password</fabric8.env.BROKER_TRUSTSTORE_PASSWORD>
-
+    <fabric8.env.AMQ_CLIENT_TYPE>producer</fabric8.env.AMQ_CLIENT_TYPE>
+    <fabric8.env.AMQ_CONSUMER_PRODUCER_START_URI>timer://hello?period=1000</fabric8.env.AMQ_CONSUMER_PRODUCER_START_URI>
+    <fabric8.env.AMQ_CONSUMER_PRODUCER_END_URI>activemq:topic:bp.oil.topic</fabric8.env.AMQ_CONSUMER_PRODUCER_END_URI>
   </properties>
 
   <dependencyManagement>

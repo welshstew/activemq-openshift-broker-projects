@@ -16,7 +16,7 @@
         <property name="trustStorePassword" value="${BROKER_TRUSTSTORE_PASSWORD}" />
     </bean>
 
-    <bean id="jms" class="org.apache.camel.component.jms.JmsComponent">
+    <bean id="activemq" class="org.apache.camel.component.jms.JmsComponent">
         <property name="connectionFactory" ref="amqSSL" />
     </bean>
 

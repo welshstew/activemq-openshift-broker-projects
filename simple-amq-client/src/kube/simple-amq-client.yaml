@@ -11,7 +11,7 @@ metadata:
     provider: fabric8
     version: 1.0-SNAPSHOT
   name: simple-amq-client
-  namespace: activemq-broker-ns
+  namespace: test
   resourceVersion: "6474"
   selfLink: /api/v1/namespaces/symphony-eu-amq/replicationcontrollers/simple-amq-client
   uid: cb45d999-f102-11e5-a955-52540013d96e
@@ -38,7 +38,7 @@ spec:
       containers:
       - env:
         - name: BROKER_URL
-          value: ssl://simple-spring-amq:61616
+          value: ssl://broker-amq-tcp-ssl.symphony-eu-bp:61617
         - name: BROKER_USERNAME
           value: admin
         - name: BROKER_TRUSTSTORE_PASSWORD
